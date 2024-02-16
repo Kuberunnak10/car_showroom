@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<body>
+  <body>
+  <br>
+  <div class="container">
+    <h1 class="text-center">Марки автомобилей</h1>
+    <br>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <ul class="list-inline center-block">
+          {% for i in mark %}
+              <a href="cars/{{ i }}">{{ i }}</a>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

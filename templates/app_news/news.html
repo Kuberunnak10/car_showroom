@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Последние новости</h1>
+    </div>
+
+    {% for i in data_news.articles %}
+        <br>
+        <br>
+    <div class="container">
+        <div class="card">
+            <a href="{{ i.url }}"><img src="{{ i.urlToImage }}" class="card-img-top"></a>
+            <div class="card-body">
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-text">{{ i.content }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

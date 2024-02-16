@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ mark_name }}{% endblock %}
+
+{% block content %}
+    <br>
+    <h1>{{ mark_name }}</h1>
+{% for i in auto %}
+    <h4>{{ i.mark }} {{ i.model }} {{ i.price }}$</h4>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Managers{% endblock %}
+
+{% block content %}
+{% for i in managers %}
+    <br>
+<div class="container">
+        <div class="card">
+            <h4>{{ i.name }} {{ i.second_name }}</h4>
+            <h4>{{ i.phone_number }}</h4>
+            <h4>{{ i.email }}</h4>
+        </div>
+</div>
+{% endfor %}
+{% endblock %}
