@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'redisboard',
     'app_autosalon',
     'app_api',
     'app_filter',
@@ -149,8 +150,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 
 CELERY_BEAT_SCHEDULE = {
     'get_news_every_hour': {
@@ -160,6 +161,10 @@ CELERY_BEAT_SCHEDULE = {
 
     },
 }
+
+CACHES = {'default': {
+    'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+    'LOCATION': 'redis://127.0.0.1:6379/1'}}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

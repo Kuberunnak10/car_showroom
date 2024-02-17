@@ -13,7 +13,9 @@
       <div class="col-md-12 text-center">
         <ul class="list-inline center-block">
           {% for i in mark %}
-              <a href="cars/{{ i }}">{{ i }}</a>
+              {% if i.car_image %}
+              <a href="cars/{{ i }}">{{ i }}<img src="{{ i.car_image.url }}" class="card-img-top"></a>
+              {% endif %}
           {% endfor %}
         </ul>
       </div>
@@ -22,4 +24,6 @@
 
   <!-- Bootstrap JS (Optional) -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 {% endblock %}

@@ -8,4 +8,4 @@ link = requests.get(f'https://newsapi.org/v2/everything?q=auto&from={yesterday}&
 # print(link)
 a = link['articles']
 for i in a:
-    print(i['title'])
+    print(i)
