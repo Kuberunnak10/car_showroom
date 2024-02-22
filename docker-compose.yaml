@@ -10,6 +10,7 @@ services:
       - 8000:8000
     depends_on:
       - db
+
   db:
     image: postgres:15
     volumes:
@@ -21,6 +22,29 @@ services:
 #      POSTGRES_DB: ${DB_NAME}
 #      POSTGRES_PORT: ${DB_PORT}
 #      POSTGRES_HOST: ${DB_HOST}
+
+  redis:
+    image: redis:latest
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+
+  celery-worker:
+    build: .
+    volumes:
+      - .:/code/celery
+    command: celery -A core worker -l info
+    depends_on:
+      - code
+
+  celery-beat:
+    build: .
+    volumes:
+      - .:/code/celery
+    command: celery -A core beat -l info
+    depends_on:
+      code:
+        condition: service_started
+
 
 volumes:
   postgres_data:

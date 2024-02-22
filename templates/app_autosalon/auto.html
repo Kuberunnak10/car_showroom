@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ auto.model }}</title>
-</head>
-<body>
-    {{ auto.model }}
-    {{ auto.price }}
-    {{ auto.body_type }}
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}{{ auto.model }}{% endblock %}
+
+{% block content %}
+    <br>
+    <h4>Модель {{ auto.model }}</h4>
+    <br>
+    <h4>Цена {{ auto.price }}</h4>
+    <br>
+    <h4>Страна производитель {{ auto.country }}</h4>
+    <br>
+    <h4>Кузов {{ auto.body_type }}</h4>
+    <br>
+    <h4>Коробка {{ auto.transmission }}</h4>
+    <br>
+    <h4>л.с. {{ auto.power }}</h4>
+    <br>
+    <h4>Цвет {{ auto.color }}</h4>
+
+
+{% endblock %}
+

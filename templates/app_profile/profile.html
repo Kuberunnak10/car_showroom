@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .profile-container {
+            max-width: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-picture {
+            max-width: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            margin: 15px 0;
+        }
+    </style>
+<body>
+
+    <div class="container profile-container">
+        <div class="text-center">
+            <h4>{{ user.username }}</h4>
+            <p>Email: {{ user.email }}</p>
+        </div>
+
+        <hr>
+
+        <div>
+            <h5>Дата регистрации</h5>
+            <p>{{ user.date_joined }}</p>
+        </div>
+
+        <hr>
+
+        <div>
+            <h5>Контактная информация</h5>
+            <p>#</p>
+            <p>#</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+{% endblock %}
