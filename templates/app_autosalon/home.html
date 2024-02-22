@@ -3,27 +3,35 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
+    <style>
+    .car-brand {
+      margin-bottom: 20px;
+    }
+    .car-brand img {
+      max-width: 40%;
+      height: auto;
+    }
+  </style>
 <body>
-  <body>
   <br>
   <div class="container">
-    <h1 class="text-center">Марки автомобилей</h1>
-    <br>
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <ul class="list-inline center-block">
-          {% for i in mark %}
-              {% if i.car_image %}
-              <a href="cars/{{ i }}">{{ i }}<img src="{{ i.car_image.url }}" class="card-img-top"></a>
-              {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Марки автомобилей</h2>
     </div>
   </div>
 
-  <!-- Bootstrap JS (Optional) -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <div class="row">
+    {% for i in mark %}
+    <div class="col-md-3 car-brand">
+      <a href="cars/{{ i }}"><img src="{{ i.car_image.url }}" alt="{{ i.name }}"></a>
+      <p><a href="cars/{{ i }}">{{ i.name }}</a></p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}

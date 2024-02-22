@@ -4,7 +4,7 @@
 
 {% block content %}
     <br>
-    <h1>{{ mark_name }}</h1>
+    <h1>{{ count }} {{ mark_name }} вналичии</h1>
 {% for i in autos %}
     <h4> <a href="sale/{{ i.id }}">{{ i }}</a></h4>
 {% endfor %}
