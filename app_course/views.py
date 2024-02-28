@@ -1,20 +1,37 @@
 import requests
 from django.shortcuts import render
-import time
-
-from app_course.models import Course
 
 
 # Create your views here.
-def get_course(request):
+def exchange(request):
+    response = requests.get(url='https://api.exchangerate-api.com/v4/latest/USD').json()
+    currencies = response.get('rates')
 
-    json_data = requests.get('https://www.cbr-xml-daily.ru/latest.js').json()
-    valuta = json_data['base']
-    json_data = 1 / json_data['rates']['USD']
-    currency = round(json_data, 2)
-    data = Course(name=valuta, currency=currency)
-    data.save()
-    return render(request, 'course/course.html', {'data': currency})
+    if request.method == 'GET':
+        context = {
+            'currencies': currencies,
+            'rub': currencies['RUB']
+        }
+
+        return render(request=request, template_name='course/course.html', context=context)
+
+    if request.method == 'POST':
+        from_amount = float(request.POST.get('from-amount'))
+        from_curr = request.POST.get('from-curr')
+        to_curr = request.POST.get('to-curr')
+
+        converted_amount = round((currencies[to_curr] / currencies[from_curr]) * float(from_amount), 2)
+
+        context = {
+            'from_curr': from_curr,
+            'to_curr': to_curr,
+            'from_amount': from_amount,
+            'currencies': currencies,
+            'converted_amount': converted_amount,
+            'rub': currencies['RUB']
+        }
+
+        return render(request=request, template_name='course/course.html', context=context)
 
 
 

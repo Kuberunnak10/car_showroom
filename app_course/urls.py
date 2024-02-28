@@ -1,7 +1,7 @@
 from django.urls import path
 
-from app_course.views import get_course
+from app_course.views import exchange
 
 urlpatterns = [
-    path('', get_course, name='course')
+    path('', exchange, name='course'),
 ]
