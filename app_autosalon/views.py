@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.cache import cache
 from app_autosalon.models import Mark, Auto
+from app_profile.forms import BookingForm
+from app_profile.models import BookingModel
 
 
 # Create your views here.
@@ -21,5 +23,24 @@ def get_mark(request, mark):
 
 def get_auto(request, id):
     auto_name = get_object_or_404(Auto, id=id)
-    return render(request, 'app_autosalon/auto.html', {'auto': auto_name})
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            contact = BookingModel(first_name=form.cleaned_data['first_name'],
+                                   last_name=form.cleaned_data['last_name'],
+                                   number_phone=form.cleaned_data['number_phone'],
+                                   email=form.cleaned_data['email'],
+                                   interesting_car=auto_name.id)
+
+            contact.save()
+    else:
+        form = BookingForm()
+
+    return render(request,
+                  'app_autosalon/auto.html',
+                  {'auto': auto_name, 'form': form})
+
+
+def index(request):
+    return render(request, 'index.html')
 

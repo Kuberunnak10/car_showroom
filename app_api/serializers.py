@@ -14,13 +14,13 @@ class AutoSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Auto
-        fields = ['mark', 'model', 'country', 'body_type', 'price', 'images',]
+        fields = '__all__'
 
 
 class MarkSerializers(serializers.ModelSerializer):
     class Meta:
         model = Mark
-        fields = ['name', 'car_image']
+        fields = '__all__'
 
 
 

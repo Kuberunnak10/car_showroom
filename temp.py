@@ -7,6 +7,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 django.setup()
 
 
-auto = Auto.objects.all()
-
-print(auto)
+# auto = Auto.objects.all()
+#
+# print(auto)

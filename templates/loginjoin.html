@@ -1,0 +1,18 @@
+<ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                            <a class="navbar-text" href="{% url 'profile' %}">{{ user.username }}  |</a>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" class="form-inline ml-auto">
+                                {% csrf_token %}
+                                <span class="nav-link" onclick="this.parentElement.submit()">Logout</span>
+                        </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration' %}">Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                        </li>
+                        {% endif %}
+                    </ul>

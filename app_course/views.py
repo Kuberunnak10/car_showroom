@@ -14,5 +14,8 @@ def get_course(request):
     currency = round(json_data, 2)
     data = Course(name=valuta, currency=currency)
     data.save()
-    return render(request, 'course/course.html', {'data': currency,})
+    return render(request, 'course/course.html', {'data': currency})
+
+
+
 
