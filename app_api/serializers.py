@@ -17,7 +17,9 @@ class AutoSerializers(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MarkSerializers(serializers.ModelSerializer):
+class MarkSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Mark
         fields = '__all__'

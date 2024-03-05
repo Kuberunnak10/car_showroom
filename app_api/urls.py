@@ -1,18 +1,20 @@
-from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from app_api.views import AutoEndpoint, MarkEndpoints, MarkList, MarkAPIList
+from app_api.views import MarkList, MarkAPIList, MarkAPIAdminUpdateDelete, MarkAPIAdminListCreate
+
+# from app_api.views import MarkEndpoints
 
 router = routers.DefaultRouter()
 
-router.register('auto', AutoEndpoint)
-router.register('mark', MarkEndpoints)
-# router.register('list', MarkEnd)
+# View with custom permission class
+# router.register('mark', MarkEndpoints)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('mark_list', MarkList.as_view()),
-    path('mark_list/<str:name>', MarkAPIList.as_view())
+    # path('', include(router.urls)),
+    path('mark_list/', MarkList.as_view()),
+    path('mark_list/<str:name>', MarkAPIList.as_view()),
+    path('mark_admin/', MarkAPIAdminListCreate.as_view()),
+    path('mark_admin/<str:name>', MarkAPIAdminUpdateDelete.as_view())
 ]

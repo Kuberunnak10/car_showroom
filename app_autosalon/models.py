@@ -1,9 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 class Mark(models.Model):
     name = models.CharField(max_length=255, unique=True)
     car_image = models.ImageField(upload_to='makr_image/', null=True, blank=True)
+    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name)
@@ -46,6 +48,7 @@ class Auto(models.Model):
     transmission = models.ForeignKey(Transmission, on_delete=models.CASCADE)
     power = models.FloatField()
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
 
     def __str__(self):
         return str(f'{self.mark}, {self.model}')
