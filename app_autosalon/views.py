@@ -39,8 +39,3 @@ def get_auto(request, id):
     return render(request,
                   'app_autosalon/auto.html',
                   {'auto': auto_name, 'form': form})
-
-
-def index(request):
-    return render(request, 'index.html')
-
