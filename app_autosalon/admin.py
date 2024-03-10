@@ -9,12 +9,11 @@ class GaleryInLine(admin.TabularInline):
 
 
 class AutoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'mark', 'model']
+    list_display = ['id', 'mark', 'model', 'price']
     inlines = [GaleryInLine,]
     list_display_links = ['mark']
-    list_filter = ['mark']
-    search_fields = ['model', 'color', 'country', 'price']
-
+    list_filter = ['mark', 'price']
+    search_fields = ['model', 'color', 'country']
 
 
 admin.site.register(Auto, AutoAdmin)

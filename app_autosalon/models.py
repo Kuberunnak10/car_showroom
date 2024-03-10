@@ -58,5 +58,8 @@ class Galery(models.Model):
     image = models.ImageField(upload_to='car_photo')
     auto = models.ForeignKey(Auto, on_delete=models.CASCADE, related_name='images')
 
+    def __str__(self):
+        return str(f'{self.auto}')
+
 
 

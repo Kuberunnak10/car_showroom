@@ -4,8 +4,7 @@ from rest_framework.permissions import AllowAny, IsAdminUser
 
 from app_api.permissions import IsAdminOrReadOnly
 from app_api.serializers import AutoSerializers, MarkSerializer
-from app_autosalon.models import Mark
-
+from app_autosalon.models import Mark, Auto
 
 # class MarkEndpoints(viewsets.ModelViewSet):
 """View with custom permission class"""
@@ -46,3 +45,9 @@ class MarkAPIAdminListCreate(generics.ListCreateAPIView):
     queryset = Mark.objects.all()
     serializer_class = MarkSerializer
     permission_classes = (IsAdminUser,)
+
+
+class AutoApiModelView(viewsets.ModelViewSet):
+    queryset = Auto.objects.all()
+    serializer_class = AutoSerializers
+    permission_classes = (IsAdminOrReadOnly,)

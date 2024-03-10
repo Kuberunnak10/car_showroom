@@ -11,6 +11,7 @@ class GalerySerializers(serializers.ModelSerializer):
 
 class AutoSerializers(serializers.ModelSerializer):
     images = GalerySerializers(many=True, read_only=True)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Auto
