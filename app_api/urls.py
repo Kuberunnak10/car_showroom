@@ -16,5 +16,5 @@ urlpatterns = [
     path('mark_list/', MarkList.as_view()),
     path('mark_list/<str:name>', MarkAPIList.as_view()),
     path('mark_admin/', MarkAPIAdminListCreate.as_view()),
-    path('mark_admin/<str:name>', MarkAPIAdminUpdateDelete.as_view())
+    path('mark_admin/<str:name>', MarkAPIAdminUpdateDelete.as_view()),
 ]
