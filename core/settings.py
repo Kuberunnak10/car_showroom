@@ -174,3 +174,7 @@ CACHES = {'default': {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 API_KEY_NEWS = os.getenv('API_KEY_NEWS')
+
+# TESTS
+
+DEFAULT_CHARSET = 'utf-8'
