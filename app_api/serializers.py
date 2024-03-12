@@ -12,6 +12,11 @@ class GalerySerializers(serializers.ModelSerializer):
 class AutoSerializers(serializers.ModelSerializer):
     images = GalerySerializers(many=True, read_only=True)
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    mark = serializers.CharField(source='mark.name')
+    country = serializers.CharField(source='country.name')
+    body_type = serializers.CharField(source='body_type.name_bodytype')
+    transmission = serializers.CharField(source='transmission.type')
+    color = serializers.CharField(source='color.car_color')
 
     class Meta:
         model = Auto

@@ -13,14 +13,14 @@ from app_autosalon.models import Mark, Auto
 #     permission_classes = (IsAdminOrReadOnly,)
 
 
-class MarkList(generics.ListAPIView):
+class MarkListList(generics.ListAPIView):
     """Api for all users (Read)"""
     queryset = Mark.objects.all()
     serializer_class = MarkSerializer
     permission_classes = (AllowAny,)
 
 
-class MarkAPIList(generics.RetrieveAPIView):
+class MarkAPI(generics.RetrieveAPIView):
     """Api for all users (Read) Viewing an individual mark"""
     serializer_class = MarkSerializer
     permission_classes = (AllowAny,)
