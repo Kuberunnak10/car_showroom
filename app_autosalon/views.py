@@ -8,9 +8,10 @@ from app_profile.models import BookingModel
 # Create your views here.
 def get_all_marks(request):
     mark = cache.get('cache_marks')
+    # mark = None
     if not mark:
         mark = Mark.objects.all()
-        cache.set('cache_marks', mark)
+        cache.set('cache_marks', mark, timeout=None)
     return render(request, 'app_autosalon/home.html', {'mark': mark})
 
 

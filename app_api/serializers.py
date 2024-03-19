@@ -1,6 +1,32 @@
+from abc import ABC, abstractmethod
+
 from rest_framework import serializers
 
-from app_autosalon.models import Auto, Galery, Mark
+from app_autosalon.models import Auto, Galery, Mark, Country, BodyType, Transmission, Color
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ['id', 'name']
+
+
+class BodyTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BodyType
+        fields = ['id', 'name_bodytype']
+
+
+class TransmissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transmission
+        fields = ['id', 'type']
+
+
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Color
+        fields = ['id', 'car_color']
 
 
 class GalerySerializers(serializers.ModelSerializer):
@@ -9,24 +35,22 @@ class GalerySerializers(serializers.ModelSerializer):
         fields = ['image',]
 
 
-class AutoSerializers(serializers.ModelSerializer):
-    images = GalerySerializers(many=True, read_only=True)
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    mark = serializers.CharField(source='mark.name')
-    country = serializers.CharField(source='country.name')
-    body_type = serializers.CharField(source='body_type.name_bodytype')
-    transmission = serializers.CharField(source='transmission.type')
-    color = serializers.CharField(source='color.car_color')
-
-    class Meta:
-        model = Auto
-        fields = '__all__'
-
-
 class MarkSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Mark
         fields = '__all__'
+
+
+class AutoSerializers(serializers.ModelSerializer):
+    mark_name = serializers.SlugRelatedField(slug_field='name', queryset=Mark.objects.all())
+    # images = GalerySerializers(many=True, read_only=True)
+    # user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Auto
+        fields = ['mark', 'model', 'country', 'body_type', 'price', 'transmission', 'power', 'color', 'user']
+
+
 
