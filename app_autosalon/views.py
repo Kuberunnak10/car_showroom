@@ -6,7 +6,7 @@ from app_profile.models import BookingModel
 
 
 # Create your views here.
-def get_all_marks(request):
+def get_all_marks(request) -> dict:
     mark = cache.get('cache_marks')
     # mark = None
     if not mark:
@@ -15,14 +15,14 @@ def get_all_marks(request):
     return render(request, 'app_autosalon/home.html', {'mark': mark})
 
 
-def get_mark(request, mark):
+def get_mark(request, mark: str) -> dict:
     mark_name = get_object_or_404(Mark, name=mark)
     autos = Auto.objects.filter(mark=mark_name)
     count = autos.count()
     return render(request, 'app_autosalon/specific_mark.html', {'mark_name': mark_name, 'autos': autos, 'count': count})
 
 
-def get_auto(request, id):
+def get_auto(request, id: int) -> dict:
     auto_name = get_object_or_404(Auto, id=id)
     if request.method == "POST":
         form = BookingForm(request.POST)
