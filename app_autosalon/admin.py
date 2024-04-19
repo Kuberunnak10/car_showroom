@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django_summernote.admin import SummernoteModelAdmin
 from app_autosalon.models import Auto, Country, Mark, Transmission, BodyType, Color, Galery
 
 
@@ -8,7 +8,7 @@ class GaleryInLine(admin.TabularInline):
     model = Galery
 
 
-class AutoAdmin(admin.ModelAdmin):
+class AutoAdmin(SummernoteModelAdmin):
     list_display = ['id', 'mark', 'model', 'price']
     inlines = [GaleryInLine,]
     list_display_links = ['mark']

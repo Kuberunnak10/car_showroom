@@ -41,7 +41,7 @@ class BodyType(models.Model):
 
 class Auto(models.Model):
     mark = models.ForeignKey(Mark, on_delete=models.CASCADE)
-    model = models.CharField(max_length=255)
+    model = models.CharField(max_length=255, db_index=True)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     body_type = models.ForeignKey(BodyType, on_delete=models.CASCADE)
     price = models.IntegerField()
@@ -49,6 +49,7 @@ class Auto(models.Model):
     power = models.FloatField()
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     user = models.ForeignKey(User, verbose_name="Пользователь", on_delete=models.CASCADE)
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(f'{self.mark}, {self.model}')

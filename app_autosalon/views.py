@@ -14,6 +14,7 @@ def get_all_marks(request) -> HttpResponse:
     if not mark:
         mark = Mark.objects.all()
         cache.set('cache_marks', mark, timeout=None)
+
     return render(request, 'app_autosalon/home.html', {'mark': mark})
 
 

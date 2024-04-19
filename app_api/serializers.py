@@ -32,7 +32,7 @@ class ColorSerializer(serializers.ModelSerializer):
 class GalerySerializers(serializers.ModelSerializer):
     class Meta:
         model = Galery
-        fields = ['image',]
+        fields = ['image', ]
 
 
 class MarkSerializer(serializers.ModelSerializer):
@@ -44,13 +44,18 @@ class MarkSerializer(serializers.ModelSerializer):
 
 
 class AutoSerializers(serializers.ModelSerializer):
-    mark_name = serializers.SlugRelatedField(slug_field='name', queryset=Mark.objects.all())
-    # images = GalerySerializers(many=True, read_only=True)
+    mark_name = serializers.SerializerMethodField()
+    username = serializers.SerializerMethodField()
+    images = GalerySerializers(many=True, read_only=True)
+
     # user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    def get_username(self, obj):
+        return obj.user.username
+
+    def get_mark_name(self, obj):
+        return obj.mark.name
 
     class Meta:
         model = Auto
-        fields = ['mark', 'model', 'country', 'body_type', 'price', 'transmission', 'power', 'color', 'user']
-
-
-
+        fields = ['mark', 'mark_name', 'images', 'model', 'country', 'body_type', 'price', 'transmission', 'power',
+                  'color', 'user', 'username']

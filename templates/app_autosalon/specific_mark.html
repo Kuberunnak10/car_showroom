@@ -3,12 +3,26 @@
 {% block title %}{{ mark_name }}{% endblock %}
 
 {% block content %}
-    <br>
-    <h1>{{ count }} {{ mark_name }} вналичии</h1>
-{% for i in autos %}
-    <h4> <a href="sale/{{ i.id }}">{{ i }}</a></h4>
-    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="text-center mt-4">{{ count }} {{ mark_name }} в наличии</h1>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            {% for auto in autos %}
+                                <li class="list-group-item">
+                                    <a href="sale/{{ auto.id }}" class="text-decoration-none">
+                                        <h4 class="card-title mb-0">{{ auto }}</h4>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
 
-{% endfor %}
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}
