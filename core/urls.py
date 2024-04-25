@@ -42,7 +42,7 @@ urlpatterns = [
     path('course/', include('app_course.urls')),
     path('managers/', include('app_managers.urls')),
     path('news/', include('app_news.urls')),
-    path('profile/', include('app_profile.urls')),
+    path('users/', include('app_profile.urls')),
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls')),
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
