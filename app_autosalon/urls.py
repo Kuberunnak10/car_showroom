@@ -1,9 +1,10 @@
 from django.urls import  path
 
-from app_autosalon.views import get_all_marks, get_mark, get_auto
+from app_autosalon.views import get_all_marks, get_mark, get_auto, about_us
 
 urlpatterns = [
     path('', get_all_marks, name='main_page'),
     path('cars/<str:mark>', get_mark, name='mark_name'),
     path('cars/sale/<int:id>', get_auto, name='get_auto'),
+    path('about', about_us, name='about_us')
 ]

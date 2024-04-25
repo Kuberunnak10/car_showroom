@@ -50,3 +50,7 @@ def get_auto(request, id: int) -> HttpResponse:
     return render(request,
                   'app_autosalon/auto.html',
                   {'auto': auto_name, 'form': form})
+
+
+def about_us(request):
+    return render(request, 'about/about.html')
